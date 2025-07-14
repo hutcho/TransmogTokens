@@ -801,7 +801,7 @@ t.ITEM_DATA = {
 		[CLASS_WARRIOR] = 152178, [CLASS_MONK] = 152142, [CLASS_HUNTER] = 152130, [CLASS_SHAMAN] = 152166
 	},
 
-	[152523] = { -- Shoulders of the Antoran Protector
+	[152532] = { -- Shoulders of the Antoran Protector
 		[BONUS] = TIER_21_BONUS_LOOKUP,
 		[CLASS_WARRIOR] = 152183, [CLASS_MONK] = 152147, [CLASS_HUNTER] = 152135, [CLASS_SHAMAN] = 152171
 	},
