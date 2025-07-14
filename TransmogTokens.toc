@@ -1,8 +1,10 @@
-## Interface: 80000
+## Interface: 110107
 ## Title: TransmogTokens
-## Notes: Adds tooltips to tier tokens.
-## Author: Kruithne
-## Version: 1.4.9
+## Notes: Adds helpful item tooltips to tier tokens
+## Author: hutcho (original:Kruithne)
+# Year Month Day
+## Version: 2025.7.14
+## Category: Collections
 
 ## X-Curse-Project-ID: transmogtokens
 ## X-GitHub-Repo: Kruithne/TransmogTokens

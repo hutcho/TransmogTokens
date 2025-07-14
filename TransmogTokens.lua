@@ -21,7 +21,7 @@ local L = t.L;
 t.tooltipCache = {
 	["active"] = false,
 	["lastTooltip"] = nil,
-	["lastItemID"] = 0,	
+	["lastItemID"] = 0,
 	["lastItemBonus"] = 0,
 	["textLineID"] = 0,
 	["pendingItems"] = {},
@@ -681,20 +681,15 @@ TransmogTokens.addItemInfo = function(tooltip, itemID)
 	end
 end
 
-local function hookToTooltip(self)
-	local link = select(2, self:GetItem());
+local function hookToTooltip(tooltip, data)
+	local link = select(2, tooltip:GetItem());
+	-- local _, link = tooltip:GetItem();
 	if link then
-		t.processTooltip(self, link);
+		t.processTooltip(tooltip, link);
 	end
 end
 
-GameTooltip:HookScript("OnTooltipSetItem", hookToTooltip);
-ItemRefTooltip:HookScript("OnTooltipSetItem", hookToTooltip);
-ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", hookToTooltip);
-ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", hookToTooltip);
-ShoppingTooltip1:HookScript("OnTooltipSetItem", hookToTooltip);
-ShoppingTooltip2:HookScript("OnTooltipSetItem", hookToTooltip);
-
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, hookToTooltip)
 
 local function onSetHyperlink(self, link)
 	local type, id = string.match(link, "^(%a+):(%d+)");
