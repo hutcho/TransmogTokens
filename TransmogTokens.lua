@@ -494,6 +494,11 @@ TransmogTokens.getSource = function(itemLink)
         return;
     end
 
+    local sourceID = select(2, C_TransmogCollection.GetItemInfo(itemLink))
+    if sourceID then
+        return sourceID
+    end
+
     local itemID, _, _, slotName = GetItemInfoInstant(itemLink);
     local slots = t.INVENTORY_SLOTS[slotName];
 
