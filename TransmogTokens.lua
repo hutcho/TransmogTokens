@@ -262,7 +262,7 @@ TransmogTokens.updateTierFrame = function(selectedID)
             tex:SetAllPoints(icon);
             icon.tex = tex;
 
-            local tick = icon:CreateTexture(nil, "LOW");
+            local tick = icon:CreateTexture(nil, "OVERLAY");
             tick:SetAllPoints(icon);
             icon.tick = tick;
 
