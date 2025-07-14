@@ -497,7 +497,7 @@ TransmogTokens.getSource = function(itemLink)
     local itemID, _, _, slotName = GetItemInfoInstant(itemLink);
     local slots = t.INVENTORY_SLOTS[slotName];
 
-    if not slots or not IsDressableItem(itemLink) then
+    if not slots or not C_Item.IsDressableItem(itemLink) then
     	return;
     end
 
