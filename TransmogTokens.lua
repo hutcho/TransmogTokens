@@ -128,7 +128,7 @@ eventFrame:SetScript("OnUpdate", function(self, elapsed)
                 -- AQ stuff.
                 local pendingItems = t.tooltipCache["pendingItems"];
                 for pendingItemID, lineIndex in pairs(pendingItems) do
-                    local itemName = GetItemInfo(pendingItemID);
+                    local itemName = C_Item.GetItemInfo(pendingItemID);
                     if itemName ~= nil then
                         for i = 1, #lineIndex do
                             line = _G[tooltipName .. lineIndex[i]];
@@ -251,7 +251,7 @@ TransmogTokens.updateTierFrame = function(selectedID)
         local iconName = frame:GetName() .. "Icon" .. frameIndex;
         local icon = _G[iconName];
 
-        local itemName, itemHyperLink, itemRarity, _, _, _, _, _, _, itemTexture = GetItemInfo(tokenID);
+        local itemName, itemHyperLink, itemRarity, _, _, _, _, _, _, itemTexture = C_Item.GetItemInfo(tokenID);
 
         if not icon then
             icon = CreateFrame("FRAME", iconName, frame);
@@ -290,7 +290,7 @@ TransmogTokens.updateTierFrame = function(selectedID)
         end
 
         for itemDataK, itemDataV in pairs(itemData) do
-            local itemName = GetItemInfo(itemDataV);
+            local itemName = C_Item.GetItemInfo(itemDataV);
             if itemName == nil then
                 hasInterest = true;
                 interest[itemDataV] = false;
@@ -316,7 +316,7 @@ TransmogTokens.updateTierFrame = function(selectedID)
 
                     if self.interest[itemID] ~= nil then
                         if itemID == self.pendingItemID then
-                            local updatedName, _, _, _, _, _, _, _, _, updatedTexture = GetItemInfo(itemID);
+                            local updatedName, _, _, _, _, _, _, _, _, updatedTexture = C_Item.GetItemInfo(itemID);
                             self.tex:SetTexture(updatedTexture);
                             self.text:SetText(BLUE .. updatedName .. "|r\n" .. self.obtainString);
 
@@ -342,7 +342,7 @@ TransmogTokens.updateTierFrame = function(selectedID)
                                 if not self.updatedInfo then
                                     self.updatedInfo = true;
 
-                                    local updatedName, _, _, _, _, _, _, _, _, updatedTexture = GetItemInfo(self.pendingItemID);
+                                    local updatedName, _, _, _, _, _, _, _, _, updatedTexture = C_Item.GetItemInfo(self.pendingItemID);
                                     self.tex:SetTexture(updatedTexture);
                                     self.text:SetText(BLUE .. updatedName .. "|r\n" .. self.obtainString);
 
@@ -561,7 +561,7 @@ TransmogTokens.calculateNeeded = function(relatedItems, bonus)
 end
 
 TransmogTokens.calculateNeededSingle = function(itemID, bonus, stash, returnStash)
-    local itemName, link = GetItemInfo("item:" .. itemID .. ":0:0:0:0:0:0:0:0:0:0:0:1:" .. bonus);
+    local itemName, link = C_Item.GetItemInfo("item:" .. itemID .. ":0:0:0:0:0:0:0:0:0:0:0:1:" .. bonus);
 
     if link ~= nil then
         local appearanceID = t.getAppearanceID(link);
@@ -656,11 +656,11 @@ TransmogTokens.addItemInfo = function(tooltip, itemID)
     t.tooltipCache["infoItems"][itemID] = true;
 
     if subItemNode then
-        local mainItemName = GetItemInfo(itemID);
+        local mainItemName = C_Item.GetItemInfo(itemID);
         t.addTooltipLine(tooltip, BLUE .. mainItemName .. "\n");
 
         for componentID, componentAmount in pairs(subItemNode["ITEMS"]) do
-            local itemName = GetItemInfo(componentID);
+            local itemName = C_Item.GetItemInfo(componentID);
 
             if not itemName then
                 itemName = "{" .. componentID .. "}";
