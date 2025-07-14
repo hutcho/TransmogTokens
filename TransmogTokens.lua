@@ -499,8 +499,8 @@ TransmogTokens.getSource = function(itemLink)
         return sourceID
     end
 
-    local itemID, _, _, slotName = GetItemInfoInstant(itemLink);
-    local slots = t.INVENTORY_SLOTS[slotName];
+    local _, _, _, itemEquipLoc = C_Item.GetItemInfoInstant(itemLink);
+    local slots = t.INVENTORY_SLOTS[itemEquipLoc];
 
     if not slots or not C_Item.IsDressableItem(itemLink) then
         return;
@@ -509,7 +509,7 @@ TransmogTokens.getSource = function(itemLink)
     model:SetUnit("player");
     model:Undress();
 
-    for i, slot in pairs(slots) do
+    for _, slot in pairs(slots) do
         model:TryOn(itemLink, slot);
         local source = model:GetSlotTransmogSources(slot);
 
