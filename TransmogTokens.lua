@@ -668,7 +668,7 @@ TransmogTokens.addItemInfo = function(tooltip, itemID)
             end
 
             local amountColour = RED;
-            local itemCount = GetItemCount(componentID);
+            local itemCount = C_Item.GetItemCount(componentID);
 
             if itemCount >= componentAmount then
                 amountColour = GREEN;
