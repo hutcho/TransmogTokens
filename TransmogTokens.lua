@@ -682,11 +682,15 @@ TransmogTokens.addItemInfo = function(tooltip, itemID)
 end
 
 local function hookToTooltip(tooltip, data)
-	local link = select(2, tooltip:GetItem());
+	if tooltip == GameTooltip then
+		local link = select(2, tooltip:GetItem());
+		if link then
+			t.processTooltip(tooltip, link);
+		end
+    end
+
 	-- local _, link = tooltip:GetItem();
-	if link then
-		t.processTooltip(tooltip, link);
-	end
+
 end
 
 TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, hookToTooltip)
